@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('build'){
             steps{
-                echo 'build stage'
+                sh "docker build -t marwan:${BUILD_NUMBER} ."
             }
         }
         stage('test'){
@@ -13,7 +13,7 @@ pipeline{
         }
         stage('deploy'){
             steps{
-                echo 'deploy stage'
+                sh"docker run -d -p 4000:8080 marwan:${BUILD_NUMBER}"
             }
         }
     }
