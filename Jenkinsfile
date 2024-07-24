@@ -3,6 +3,9 @@ pipeline{
     parameters{
         choice(name: 'choice' , choices: ['main','test','branch'] , description: 'choose on of the options')
     }
+    environment{
+        marwan = 'string0'
+    }
     stages{
         stage('build'){
             steps{
@@ -13,6 +16,7 @@ pipeline{
             steps{
                 echo 'test stage'
                 echo "${params.choice}"
+                echo "${env.marwan}"
             }
         }
         stage('deploy'){
