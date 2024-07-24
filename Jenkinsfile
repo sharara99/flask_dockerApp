@@ -13,7 +13,7 @@ pipeline{
         }
         stage('deploy'){
             steps{
-                sh"docker run -d -p 4000:8080 marwan:${BUILD_NUMBER}"
+                sh"docker run -d -p 400${BUILD_NUMBER}:8080 marwan:${BUILD_NUMBER}"
             }
         }
     }
