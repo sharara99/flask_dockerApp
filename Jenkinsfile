@@ -3,7 +3,7 @@ pipeline{
     parameters{
         choice(name: 'choice' , choices: ['main','test','branch'] , description: 'choose on of the options')
         text(name: 'choice' , defaultValue: 'default' , description: 'choose on of the options')
-        password(name: 'choice' , defaultValue: 'secret' , description: 'choose on of the options')
+        password(name: 'choice' , defaultValue: 'SECRET' , description: 'choose on of the options')
         string(name: 'choice' , defaultValue: 'default' , description: 'choose on of the options')
         booleanParam(name: 'choice' , defaultValue: true , description: 'choose on of the options')
     }
