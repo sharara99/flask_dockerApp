@@ -23,7 +23,7 @@ pipeline{
                 echo "${params.text}"
                 echo "${params.pass}"
                 echo "${params.str}"
-                echo "${env.bool}"
+                echo "${params.bool}"
             }
         }
         stage('deploy'){
