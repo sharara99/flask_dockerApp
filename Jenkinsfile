@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent{
+        label 'agent2'
+    }
     parameters{
         choice(name: 'choice' , choices: ['main','test','branch'] , description: 'choose on of the options')
         text(name: 'text' , defaultValue: 'default' , description: 'choose on of the options')
