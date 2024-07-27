@@ -1,17 +1,15 @@
 pipeline{
-    agent{
-        label any
-    }
+    agent any
     stages{
         stage('build'){
             steps{
-          sh "docker build -t maro4299311/test:${env.BUILD_NUMBER}"
-          withCredentials([UsernamePassword(credentialsId: 'dockerhub', usernameVariable: 'user' , 'PasswordVariable': 'pass')]) {
-          sh "docker login -u $user -p $pass"
-          sh "docker push maro4299311/test:${env.BUILD_NUMBER}"
-}  
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                  sh "docker build -t maro4299311/test:${env.BUILD_NUMBER} ."
+                  sh "docker login -u $USERNAME -p $PASSWORD"
+                  sh "docker push maro4299311/test:${env.BUILD_NUMBER}"
+                     
+        }
             }
-  
-                  }
+        }
     }
 }
