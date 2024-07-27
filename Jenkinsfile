@@ -3,9 +3,10 @@ pipeline{
         label 'agent1'
     }
     stages{
-        stage('build')
+        stage('build'){
         steps{
             echo 'build'
+        }
         }
     }
 }
