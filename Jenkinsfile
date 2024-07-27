@@ -3,7 +3,7 @@ pipeline{
         label any
     }
     stages{
-        stage('build'){test
+        stage('build'){
             steps{
           sh "docker build -t maro4299311/test:${BUILD_NUMBER}"
           withCredentials([UsernamePassword(credentialsId: 'dockerhub', usernameVariable: 'user' , 'PasswordVariable': 'pass')]) {
