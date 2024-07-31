@@ -9,6 +9,7 @@ pipeline{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                 sh "docker login -u $user -p $pass"
                 sh "docker push maro4299311/marwan:${env.BUILD_NUMBER}"
+                    #this is build stage
 }
                 
             }
