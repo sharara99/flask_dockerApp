@@ -1,6 +1,7 @@
 pipeline{
     agent{
         label 'agent'
+        //dasjkdasndas
     }
     stages{
         stage('build'){
