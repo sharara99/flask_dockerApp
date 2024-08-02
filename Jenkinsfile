@@ -1,6 +1,7 @@
 pipeline{
     agent{
         label 'agent'
+        //sadasdas
     }
     stages{
         stage('build'){
