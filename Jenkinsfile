@@ -1,30 +1,20 @@
-pipeline{
-    agent{
-        label 'agent'
-    }
-    stages{
-        stage('build'){
-            steps{
-            sh "docker build -t maro4299311/flask:${env.BUILD_NUMBER} ."
-            withCredentials([usernamePassword(credentialsId: 'docker_hub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-             sh "docker login -u $user  -p $pass"
-             sh "docker push maro4299311/flask:${env.BUILD_NUMBER}"
-                //dasdasdsads
-}
+pipeline {
+    agent any 
+    stages {
+        stage('Build') {
+            steps {
+                sh "docker build -t sharara99/maven:${BUILD_NUMBER} ."
+                withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                    sh "docker login -u $user -p $pass"
+                }
+                sh "docker push sharara99/maven:${BUILD_NUMBER}"
             }
-       
-           
         }
-
-        stage('deploy'){
-            steps{
-                sh "docker run -d -p 500${env.BUILD_NUMBER}:8080 maro4299311/flask:${env.BUILD_NUMBER}"
+        
+        stage('Deploy') {
+            steps {
+                sh "docker run -d -p 5000:6000 sharara99/maven:${BUILD_NUMBER}"
             }
         }
     }
 }
-
-
-
-
-
