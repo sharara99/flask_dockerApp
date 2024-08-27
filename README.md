@@ -10,23 +10,31 @@ This project is a basic Flask web application that demonstrates how to serve dyn
 - **Jenkins Integration:** A Jenkinsfile is included for CI/CD pipeline integration.
 
 ## Project Structure
-.
-├── Dockerfile
-├── Jenkinsfile
-├── README.md
-├── app.py
-├── docker-compose.yml
-└── templates
-    └── hello.html
 
+├── Dockerfile
+
+
+├── Jenkinsfile
+
+
+├── README.md
+
+
+├── app.py
+
+
+├── docker-compose.yml
+
+
+└── templates
+
+   └── hello.html
 
 - `app.py`: The main Flask application file.
 - `Dockerfile`: Used to build the Docker image for the application.
 - `Jenkinsfile`: CI/CD pipeline configuration for Jenkins.
 - `docker-compose.yml`: Compose file for running the app in a Docker container.
 - `templates/hello.html`: HTML template that gets rendered by Flask.
-
-## Getting Started
 
 ### Prerequisites
 
