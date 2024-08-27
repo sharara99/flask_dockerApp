@@ -30,14 +30,11 @@ This project is a basic Flask web application that demonstrates how to serve dyn
 
    └── hello.html
 
-
 - `app.py`: The main Flask application file.
 - `Dockerfile`: Used to build the Docker image for the application.
 - `Jenkinsfile`: CI/CD pipeline configuration for Jenkins.
 - `docker-compose.yml`: Compose file for running the app in a Docker container.
 - `templates/hello.html`: HTML template that gets rendered by Flask.
-
-## Getting Started
 
 ### Prerequisites
 
