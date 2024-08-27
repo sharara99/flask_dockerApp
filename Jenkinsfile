@@ -1,6 +1,12 @@
 pipeline {
     agent any 
     stages {
+       stage('Checkout') {
+            steps {
+                git 'https://github.com/your-repo/Flask-App-Pipline.git'
+            }
+       }
+       
         stage('Build') {
             steps {
                 sh "docker build -t sharara99/flask-app-pipline:${BUILD_NUMBER} ."
