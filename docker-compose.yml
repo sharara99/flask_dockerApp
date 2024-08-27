@@ -13,4 +13,4 @@ services:
 
 
 volumes:
-  jenkins_home2:
+  jenkins_home:
