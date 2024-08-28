@@ -1,25 +1,27 @@
 pipeline {
-    agent any 
+    agent any
     stages {
-       stage('Checkout') {
+        stage('Checkout') {
             steps {
-                git clone 'https://github.com/sharara99/flask_dockerApp.git'
+                git branch: 'main', credentialsId: 'Github', url: 'https://github.com/sharara99/flask_dockerApp.git'
             }
-       }
-       
+        }
+        
         stage('Build') {
             steps {
-                sh "docker build -t sharara99/flask-app-pipline:${BUILD_NUMBER} ."
+                sh "docker build -t sharara99/flask-app-pipeline:${BUILD_NUMBER} ."
                 withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     sh "docker login -u $user -p $pass"
                 }
-                sh "docker push sharara99/flask-app-pipline:${BUILD_NUMBER}"
+                sh "docker push sharara99/flask-app-pipeline:${BUILD_NUMBER}"
             }
         }
         
         stage('Deploy') {
             steps {
-                sh "docker run -d -p 5000:6000 sharara99/flask-app-pipline:${BUILD_NUMBER}"
+                echo "Deploying on Kubernetes..."
+
+                sh "kubectl apply -f flask-pod.yml"
             }
         }
     }
