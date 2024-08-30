@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_IMAGE = "sharara99/flask-app-pipeline"
-    }
     stages {
         stage('Setup') {
             steps {
@@ -14,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh "docker build -t ${DOCKER_IMAGE}:${BUILD_NUMBER} ."
+                    sh "docker build -t sharara99/flask-app-pipeline:${BUILD_NUMBER} ."
                     
                     // Log in to Docker Hub
                     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
@@ -22,7 +19,7 @@ pipeline {
                     }
                     
                     // Push the Docker image to Docker Hub
-                    sh "docker push ${DOCKER_IMAGE}:${BUILD_NUMBER}"
+                    sh "docker push sharara99/flask-app-pipeline:${BUILD_NUMBER}"
                 }
             }
         }
@@ -31,9 +28,8 @@ pipeline {
             steps {
                 script {
                     echo "Deploying on Kubernetes..."
-                    docker.image('bitnami/kubectl:latest').inside {
-                        sh "kubectl set image deployment/flask-app flask=${DOCKER_IMAGE}:${BUILD_NUMBER}"
-                    }
+                    // Apply the Kubernetes manifest
+                    sh "kubectl apply -f ${WORKSPACE}/flask-pod.yml"
                 }
             }
         }
