@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
   - name: flask
-    image: sharara99/flask-app-pipline:3
+    image: sharara99/flask-app-pipeline:3
     ports:
     - containerPort: 5000
